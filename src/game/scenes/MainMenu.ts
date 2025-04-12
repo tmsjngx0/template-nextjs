@@ -26,6 +26,28 @@ export class MainMenu extends Scene
             align: 'center'
         }).setOrigin(0.5).setDepth(100);
 
+        // Add text to start Shanghai Draw
+        const shanghaiButton = this.add.text(512, 520, 'Play Shanghai Draw', {
+            fontFamily: 'Arial Black', fontSize: 28, color: '#ffff00', // Different color
+            stroke: '#000000', strokeThickness: 6,
+            align: 'center'
+        }).setOrigin(0.5).setDepth(100).setInteractive(); // Make it interactive
+
+        shanghaiButton.on('pointerdown', () => {
+            this.scene.start('ShanghaiScene'); // Start Shanghai scene on click
+        });
+
+        // Add text/button for the original game (optional, if changeScene isn't used elsewhere)
+        const originalGameButton = this.add.text(512, 570, 'Play Original Game', {
+             fontFamily: 'Arial Black', fontSize: 28, color: '#ffffff',
+             stroke: '#000000', strokeThickness: 6,
+             align: 'center'
+        }).setOrigin(0.5).setDepth(100).setInteractive();
+
+        originalGameButton.on('pointerdown', () => {
+            this.changeScene(); // Call existing method to start 'Game' scene
+        });
+
         EventBus.emit('current-scene-ready', this);
     }
     
